@@ -1,0 +1,47 @@
+<div class="login-page" [@routerTransition]>
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <img src="assets/images/logo.jpg" width="150px" class="user-avatar" />
+      <h1>Gerenciador de Projetos</h1>
+
+      <!--Card content-->
+<!--      <mdb-card-body class="px-lg-5 pt-0">-->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+          <!-- User -->
+          <div class="md-form">
+            <input type="text" id="loginFormUser" formControlName="username" class="form-control input-underline"
+                   [ngClass]="{ 'is-invalid': submitted && formFilds['username'].errors }" placeholder="Name"/>
+            <div *ngIf="submitted && formFilds['username'].errors" class="invalid-feedback">
+              <div *ngIf="formFilds['username'].errors?.['required']">{{'Username is required'}}</div>
+            </div>
+          </div>
+
+          <br>
+          <!-- Password -->
+          <div class="md-form">
+            <input type="password" id="loginFormPassword" formControlName="password" class="form-control input-underline"
+                   [ngClass]="{ 'is-invalid': submitted && formFilds['password'].errors }" placeholder="Password"/>
+            <div *ngIf="submitted && formFilds['password'].errors" class="invalid-feedback">
+              <div *ngIf="formFilds['password'].errors?.['required']">{{'Password is required'}}</div>
+            </div>
+          </div>
+
+          <!-- Sign in button -->
+          <div class="text-center mt-4">
+            <button [disabled]="loading" mdbBtn color="info" mdbWavesEffect class="rounded-btn">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              {{ 'Log in' }}
+            </button>
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            <hr class="hr-light mb-3 mt-4">
+          </div>
+
+        </form>
+        <!--Card content-->
+<!--      </mdb-card-body>-->
+
+    </div>
+  </div>
+</div>
