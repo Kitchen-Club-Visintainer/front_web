@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
           this.authenticationService.setUserName(this.formFilds['username'].value);
         },
         error => {
-          this.error = error;
+          this.error = error.message;
           this.loading = false;
         });
   }
