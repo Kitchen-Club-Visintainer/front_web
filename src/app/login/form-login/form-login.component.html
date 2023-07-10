@@ -1,0 +1,36 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+  <!-- Usuário -->
+  <div class="md-form">
+    <input type="text" id="loginFormUser" formControlName="username" class="form-control input-underline"
+           [ngClass]="{ 'is-invalid': submitted && formFilds['username'].errors }" placeholder="Nome"/>
+    <div *ngIf="submitted && formFilds['username'].errors" class="invalid-feedback">
+      <div *ngIf="formFilds['username'].errors?.['required']">{{'Username is required'}}</div>
+    </div>
+  </div>
+
+  <br>
+  <!-- Senha -->
+  <div class="md-form">
+    <input type="password" id="loginFormPassword" formControlName="password" class="form-control input-underline"
+           [ngClass]="{ 'is-invalid': submitted && formFilds['password'].errors }" placeholder="Senha"/>
+    <div *ngIf="submitted && formFilds['password'].errors" class="invalid-feedback">
+      <div *ngIf="formFilds['password'].errors?.['required']">{{'Password is required'}}</div>
+    </div>
+  </div>
+
+  <!-- Botão de Login -->
+  <div class="text-center mt-4">
+    <button [disabled]="loading" mdbBtn color="info" mdbWavesEffect class="rounded-btn">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      {{ 'Log in' }}
+    </button>
+
+    <!-- Mensagens de Erro -->
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+      {{error}}
+    </div>
+    <!--            <hr class="hr-light mb-3 mt-4">-->
+  </div>
+
+</form>
