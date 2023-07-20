@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class CadastroComponent {
 
+  loading: boolean = false;
+
+  // Buscar os estados no enum do backend
+  estados = [
+    {id: 1, nome: 'Brasília'},
+    {id: 2, nome: 'Goias'}
+  ]
+
 }

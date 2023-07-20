@@ -1,1 +1,121 @@
-/* You can add global styles to this file, and also import other style files */
+$background-color: #222;
+
+$text-menu-ativo-cor: #fabe52;
+$text-menu-inativo-cor: #ce9822;
+
+$borda: 2px solid rgba(255, 255, 255, 0.5);
+
+body {
+  background-color: $background-color;
+  overflow: hidden;
+}
+
+:host {
+  display: block;
+}
+
+.login-page {
+  //position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background: $background-color;
+  text-align: center;
+  color: #fff;
+  padding: 3em;
+
+  .col-md-4 {
+    padding: 0;
+  }
+
+  .user-avatar {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+}
+
+.input-underline {
+  background: 0 0;
+  border: none;
+  border-bottom: $borda;
+  color: #fff;
+  border-radius: 0;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2.5px solid #fff;
+  }
+}
+
+.select-underline {
+  background: 0 0;
+  border-style: none;
+  border-bottom: $borda;
+  box-sizing: border-box;
+  //color: #fff;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2.5px solid #fff;
+  }
+}
+
+.rounded-btn {
+  margin-top: 10px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+
+  color: rgba(255, 255, 255, 0.2);
+  background: $background-color;
+  border: $borda;
+  font-size: 18px;
+  line-height: 30px;
+  padding: 0 25px;
+
+  transition: color 0.3s ease, border 0.3s ease, box-shadow 0.5s ease;
+
+  &:focus,
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+    border: 2px solid rgba(255, 255, 255, 1);
+    outline: none;
+    box-shadow: 0 0 10px #fff;
+  }
+}
+
+h1 {
+  font-family: 'Imbue', serif;
+  font-weight: 300;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 36px;
+
+  small {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.form-control {
+  padding: 8px 8px;
+
+  input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  input:-moz-placeholder {
+    /* Firefox 18- */
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+}

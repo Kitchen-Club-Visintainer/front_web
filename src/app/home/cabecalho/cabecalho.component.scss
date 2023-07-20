@@ -1,8 +1,4 @@
-$background-color: rgba(34, 34, 34, 0.95);
-$text-menu-ativo-cor: #fabe52;
-$text-menu-inativo-cor: #ce9822;
-$borda: 2px solid rgba(255, 255, 255, 0.65);
-
+@import "../../../styles";
 
 .cabecalho{
   background: $background-color;
