@@ -1,44 +1,44 @@
-<form>
+<form [formGroup]="cadastroForm">
   <div class="row justify-content-center">
     <div class="col-md-3">
       <div class="md-form">
-        <input type="text" id="cad-nomeCompleto" class="input-underline" placeholder="Nome Completo"/>
+        <input type="text" id="cad-nomeCompleto" formControlName="nomeCompleto" class="input-underline" placeholder="Nome Completo"/>
       </div>
 
       <div class="md-form">
-        <input type="text" id="cad-userName" class="input-underline" placeholder="Nome de usuário"/>
+        <input type="text" id="cad-userName" formControlName="username" class="input-underline" placeholder="Nome de usuário"/>
       </div>
 
       <div class="md-form">
-        <input type="text" id="cad-email" class="input-underline" placeholder="Email"/>
+        <input type="text" id="cad-email" formControlName="email" class="input-underline" placeholder="Email"/>
       </div>
 
       <div class="md-form">
-        <input type="password" id="cad-senha" class="input-underline" placeholder="Senha"/>
+        <input type="password" id="cad-senha" formControlName="senha" class="input-underline" placeholder="Senha"/>
       </div>
 
       <div class="md-form">
-        <input type="password" id="cad-senhaConfirm" class="input-underline"
+        <input type="password" id="cad-senhaConfirm" formControlName="confSenha" class="input-underline"
                placeholder="Confirmação da Senha"/>
       </div>
     </div>
 
     <div class="col-md-3">
       <div class="md-form">
-        <input type="text" id="cad-cep" class="input-underline" placeholder="CEP"/>
+        <input type="text" id="cad-cep" formControlName="cep" class="input-underline" placeholder="CEP"/>
       </div>
       <!--  COLOCAR MÁSCARA  -->
 
       <div class="md-form">
-        <input type="text" id="cad-logradouro" class="input-underline" placeholder="Endereço"/>
+        <input type="text" id="cad-logradouro" formControlName="logradouro" class="input-underline" placeholder="Endereço"/>
       </div>
 
       <div class="md-form">
-        <input type="text" id="cad-complemento" class="input-underline" placeholder="Complemento"/>
+        <input type="text" id="cad-complemento" formControlName="complemento" class="input-underline" placeholder="Complemento"/>
       </div>
 
       <div class="md-form">
-        <input type="number" id="cad-numero" class="input-underline" placeholder="Número"/>
+        <input type="number" id="cad-numero" formControlName="numero" class="input-underline" placeholder="Número"/>
       </div>
 
       <div class="md-form">
@@ -52,9 +52,9 @@
 
   <div class="row justify-content-center">
     <div class="col-md-3">
-      <button [disabled]="loading" mdbBtn color="info" mdbWavesEffect class="rounded-btn">
+      <button [disabled]="loading" (click)="cadastrarNovoUsuario()" mdbBtn color="info" mdbWavesEffect class="rounded-btn">
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-        {{ 'Cadastrar' }}
+        Cadastrar
       </button>
     </div>
   </div>
