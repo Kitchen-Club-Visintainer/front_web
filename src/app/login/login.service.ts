@@ -11,8 +11,8 @@ import {FactoryEndpointService} from "../shared/services/factory-endpoint.servic
 })
 export class LoginService {
 
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<User | null>;
+  public currentUser: Observable<User | null>;
 
   constructor(private http: HttpClient, private factoryEndpointService: FactoryEndpointService) {
     // @ts-ignore
@@ -20,8 +20,12 @@ export class LoginService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
+  public get currentUserValue(): User | null {
     return this.currentUserSubject.getValue();
+  }
+
+  public get isLoggedIn() {
+    return this.currentUser.pipe(map(user => !!user));
   }
 
   login(nome: string, senha: string): Observable<any> {
@@ -35,11 +39,11 @@ export class LoginService {
       }));
   }
 
-  logout() {
+  logout(): void {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     localStorage.removeItem('username');
-    // this.currentUserSubject.next(null);
+    this.currentUserSubject.next(null);
   }
 
   //set name user new in storage

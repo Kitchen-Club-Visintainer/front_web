@@ -7,7 +7,7 @@ import {LoginService} from "../../login/login.service";
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
+  // https://cursos.alura.com.br/forum/topico-alguem-sabe-me-dizer-o-porque-de-canload-canactivate-cabactivatechild-entre-outros-estarem-marcados-como-is-deprecated-289843
   constructor(private loginService: LoginService, private router: Router) {
   }
 

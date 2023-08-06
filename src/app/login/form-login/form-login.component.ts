@@ -23,10 +23,10 @@ export class FormLoginComponent {
     private route: ActivatedRoute,
   ) {
 
-    // // redirecionamento para a página principal, caso esteja logado
-    // if (this.authenticationService.currentUserValue) {
-    //   this.router.navigate(['']);
-    // }
+    // redirecionamento para a página principal, caso esteja logado
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['']);
+    }
   }
 
   get formFilds(): { [key: string]: AbstractControl; } {
