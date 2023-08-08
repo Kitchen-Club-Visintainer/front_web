@@ -14,6 +14,7 @@ export class CadastroComponent implements OnInit {
   loading: boolean = false;
   cadastroForm!: FormGroup;
   cadastro: Cadastro = new Cadastro;
+  estados!:{id: number, nome: string}[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,14 +33,20 @@ export class CadastroComponent implements OnInit {
       complemento: ['', Validators.required],
       numero: ['', Validators.required]
     });
-
+    this.estados = this.buscarEstados();
   }
+  buscarEstados(): { id: number, nome: string }[] {
+    const estados: { id: number, nome: string }[] = [];
 
-// Buscar os estados no enum do backend
-  estados = [
-    {id: 1, nome: 'Brasília'},
-    {id: 2, nome: 'Goias'}
-  ]
+    this.authenticationService.buscarEstados()
+        .subscribe(value =>
+            estados.push(
+                ...value.map((nome, index) => ({ id: index + 1, nome: nome as string }))
+            )
+        );
+
+    return estados;
+  }
 
   get f(): { [key: string]: AbstractControl; } {
     return this.cadastroForm.controls;

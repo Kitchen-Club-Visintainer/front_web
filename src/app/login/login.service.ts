@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, catchError, map, Observable, retry} from "rxjs";
+import {BehaviorSubject, catchError, map, Observable, retry, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment.prod";
 import {User} from "../shared/models/user.module";
@@ -48,13 +48,10 @@ export class LoginService {
 
   //set name user new in storage
   setUserName(username:string){
-
     localStorage.setItem('username', JSON.stringify(username));
-
   }
 
   getUserName(){
-
     // @ts-ignore
     return JSON.parse(localStorage.getItem('username'));
   }
@@ -65,6 +62,10 @@ export class LoginService {
       //   // retry(1),
       //   // catchError(this.factoryEndpointService.errorHandler)
       // )
+  }
+
+  buscarEstados(): Observable<String[]> {
+    return this.http.get<String[]>(`${environment.apiUrl}/auth/estados`)
   }
 
 }
