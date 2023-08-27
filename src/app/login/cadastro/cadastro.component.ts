@@ -66,6 +66,7 @@ export class CadastroComponent implements OnInit {
     this.cadastro.logradouro = this.f['logradouro'].value
     this.cadastro.complemento = this.f['complemento'].value
     this.cadastro.numero = this.f['numero'].value
+    //TODO: Colocar UF
 
     this.loading = true;
     this.authenticationService.cadastrarNovoUsuario(this.cadastro)

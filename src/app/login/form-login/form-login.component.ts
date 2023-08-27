@@ -57,6 +57,7 @@ export class FormLoginComponent {
         data => {
           this.router.navigate([this.returnUrl]);
           this.authenticationService.setUserName(this.formFilds['username'].value);
+          console.log(data);
         },
         error => {
           this.error = error.message;

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {BehaviorSubject, catchError, map, Observable, retry, tap} from "rxjs";
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, map, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment.prod";
 import {User} from "../shared/models/user.module";
@@ -65,7 +65,10 @@ export class LoginService {
   }
 
   buscarEstados(): Observable<String[]> {
-    return this.http.get<String[]>(`${environment.apiUrl}/auth/estados`)
+    return this.http.get<String[]>(`${environment.apiUrl}/estados`)
+      .pipe(
+        tap(console.log)
+      );
   }
 
 }
