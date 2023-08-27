@@ -3,6 +3,7 @@ import {LoginService} from "../login.service";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Cadastro} from "../../shared/models/cadastro.model";
 import {first} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-cadastro',
@@ -42,7 +43,10 @@ export class CadastroComponent implements OnInit {
         .subscribe(value =>
             estados.push(
                 ...value.map((nome, index) => ({ id: index + 1, nome: nome as string }))
-            )
+            ), error => {
+            this.verificarErroSessao(error)
+            console.log(error);
+          }
         );
 
     return estados;
@@ -76,12 +80,20 @@ export class CadastroComponent implements OnInit {
         console.log('Sucesso', data)
       },
       error => {
+        this.verificarErroSessao(error)
         console.log('Erro', error)
       }
     );
     this.cadastroForm.reset();
 
     this.loading = false;
+  }
+
+  private verificarErroSessao(error: any): void {
+    if (error.status == 403) {
+      console.log(error.message);
+      this.authenticationService.logout();
+    }
   }
 
 }

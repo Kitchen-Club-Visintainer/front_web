@@ -20,8 +20,7 @@ export class FormLoginComponent {
     private formBuilder: FormBuilder,
     private authenticationService: LoginService,
     private router: Router,
-    private route: ActivatedRoute,
-  ) {
+    private route: ActivatedRoute) {
 
     // redirecionamento para a página principal, caso esteja logado
     if (this.authenticationService.currentUserValue) {
@@ -39,7 +38,6 @@ export class FormLoginComponent {
       password: ['', Validators.required]
     });
 
-    // get return url from route parameters or default to '/home'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
   }
 
@@ -57,7 +55,6 @@ export class FormLoginComponent {
         data => {
           this.router.navigate([this.returnUrl]);
           this.authenticationService.setUserName(this.formFilds['username'].value);
-          console.log(data);
         },
         error => {
           this.error = error.message;

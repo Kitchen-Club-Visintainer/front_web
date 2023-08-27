@@ -51,13 +51,17 @@ export class LoginService {
     localStorage.setItem('username', JSON.stringify(username));
   }
 
+  // tokenValidation(token: string): boolean {
+  //
+  // }
+
   getUserName(){
     // @ts-ignore
     return JSON.parse(localStorage.getItem('username'));
   }
 
   cadastrarNovoUsuario(cadastro: Cadastro): Observable<any> {
-    return this.http.post<Cadastro>(`${environment.apiUrl}/auth/novoUsuario`, JSON.stringify(cadastro), this.factoryEndpointService.httpOptions)
+    return this.http.post<Cadastro>(`${environment.apiUrl}/usuario/novoUsuario`, JSON.stringify(cadastro), this.factoryEndpointService.httpOptions)
       // .pipe(
       //   // retry(1),
       //   // catchError(this.factoryEndpointService.errorHandler)
