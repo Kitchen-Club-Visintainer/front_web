@@ -1,1 +1,10 @@
 <p> HOME </p>
+<div [ngClass]="{ 'ativo_menu': ativado }" class="menu_drop">
+  <ul class="itens">
+    <li>Ingredientes</li>
+    <li>Receitas</li>
+    <li>Cadastrar</li>
+  </ul>
+</div>
+<div [ngClass]="{ 'ativo_btn': ativado }" class="botao_menu_drop"></div>
+<div [ngClass]="{ 'ativo_btn': ativado }" class="botao_menu_click" (click)="ativar()" ></div>
