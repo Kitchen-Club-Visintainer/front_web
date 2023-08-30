@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  ativado: boolean = false;
-
-  ativar() {
-    this.ativado = !this.ativado;
-  }
-
 }
