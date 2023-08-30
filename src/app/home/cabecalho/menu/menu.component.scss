@@ -62,6 +62,23 @@
     text-shadow: 0px 2px 3px rgba(222, 246, 246, 0.75);
     color: $background-color;
   }
+
+  li {
+    position: relative;
+    //float: left;
+
+    a {
+      color: $background-color;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #fff;
+      -moz-box-shadow: 0 3px 10px 0 #CCC;
+      text-shadow: 0px 0px 5px #fff;
+    }
+  }
+
 }
 
 .ativo_btn {
@@ -69,4 +86,5 @@
 }
 .ativo_menu {
   top: 54px;
+  z-index: 0;
 }

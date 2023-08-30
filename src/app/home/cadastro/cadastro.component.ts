@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from "../login.service";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Cadastro} from "../../shared/models/cadastro.model";
 import {first} from "rxjs";
-import {HttpErrorResponse} from "@angular/common/http";
+import {LoginService} from "../../login/login.service";
 
 @Component({
   selector: 'app-cadastro',
@@ -40,14 +39,14 @@ export class CadastroComponent implements OnInit {
     const estados: { id: number, nome: string }[] = [];
 
     this.authenticationService.buscarEstados()
-        .subscribe(value =>
-            estados.push(
-                ...value.map((nome, index) => ({ id: index + 1, nome: nome as string }))
-            ), error => {
-            this.verificarErroSessao(error)
-            console.log(error);
-          }
-        );
+      .subscribe(value =>
+          estados.push(
+            ...value.map((nome, index) => ({ id: index + 1, nome: nome as string }))
+          ), error => {
+          this.verificarErroSessao(error)
+          console.log(error);
+        }
+      );
 
     return estados;
   }
@@ -76,14 +75,14 @@ export class CadastroComponent implements OnInit {
     this.authenticationService.cadastrarNovoUsuario(this.cadastro)
       .pipe(first())
       .subscribe(
-      data => {
-        console.log('Sucesso', data)
-      },
-      error => {
-        this.verificarErroSessao(error)
-        console.log('Erro', error)
-      }
-    );
+        data => {
+          console.log('Sucesso', data)
+        },
+        error => {
+          this.verificarErroSessao(error)
+          console.log('Erro', error)
+        }
+      );
     this.cadastroForm.reset();
 
     this.loading = false;

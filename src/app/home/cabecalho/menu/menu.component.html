@@ -1,8 +1,8 @@
 <div [ngClass]="{ 'ativo_menu': ativado }" class="menu_drop">
-  <ul class="itens">
+  <ul class="itens menu">
     <li>Ingredientes</li>
     <li>Receitas</li>
-    <li>Cadastrar</li>
+    <li><a routerLink="cadastro" routerLinkActive="menu-ativo">Cadastrar</a></li>
   </ul>
 </div>
 <div [ngClass]="{ 'ativo_btn': ativado }" class="botao_menu_drop"></div>
