@@ -1,5 +1,3 @@
-import {Validators} from "@angular/forms";
-
 export class Cadastro {
 
   public id: number | undefined;
