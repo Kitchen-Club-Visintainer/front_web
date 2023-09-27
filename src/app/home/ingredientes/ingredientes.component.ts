@@ -35,7 +35,13 @@ export class IngredientesComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.ingredienteService.buscarTodosingredientes()
+      .subscribe({
+        next: (result: Ingrediente[]): void => {
+          //TODO: colocar a lista para rendereizar na página os ingredientes cadastrados
+        }
+      });
   }
 
   get ingredientes(): { [key: string]: AbstractControl; } {

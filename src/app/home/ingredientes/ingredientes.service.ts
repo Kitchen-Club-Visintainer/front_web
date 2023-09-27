@@ -24,4 +24,8 @@ export class IngredientesService {
       ingrediente,
       this.httpOptions)
   }
+
+  public buscarTodosingredientes(): Observable<Ingrediente[]> {
+    return this.httpClient.get<Ingrediente[]>(this.urlBase);
+  }
 }
