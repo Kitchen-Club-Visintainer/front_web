@@ -1,23 +1,23 @@
 <form [formGroup]="ingredientesForm">
 
-    <div class="row formulario">
-        <div class="col-3">
-            <input type="text" id="ing-nome"
-                   formControlName="ingNome" class="input-underline" placeholder="Nome do Ingrediente"/>
-        </div>
-        <div class="col-2">
-            <input type="text" id="ing-valorNut"
-                   formControlName="ingValorNut" class="input-underline" placeholder="Valor Nutricional"/>
-        </div>
-        <div class="col-3">
-            <select name="grupoAlimentar" id="ing-grupoAlimentar" class="select-underline"
-                    formControlName="ingGrupoAlimentar">
-                <option [ngValue]="null" [disabled]="true">Selecione o Grupo Alimentar</option>
-                <option *ngFor="let ga of gruposAlimentares" [ngValue]="ga.codigo">{{ ga.descricao }}</option>
-            </select>
-        </div>
-        <div class="col">
-            <button mat-flat-button (click)="cadastrar()">Cadastrar</button>
-        </div>
+  <div class="row formulario">
+    <div class="col-3">
+      <input type="text" id="ing-nome"
+             formControlName="ingNome" class="input-underline" placeholder="Nome do Ingrediente"/>
     </div>
+    <div class="col-2">
+      <input type="text" id="ing-valorNut"
+             formControlName="ingValorNut" class="input-underline" placeholder="Valor Nutricional"/>
+    </div>
+    <div class="col-3">
+      <select name="grupoAlimentar" id="ing-grupoAlimentar" class="select-underline"
+              formControlName="ingGrupoAlimentar">
+        <option [ngValue]="null" [disabled]="true">Selecione o Grupo Alimentar</option>
+        <option *ngFor="let ga of gruposAlimentares" [ngValue]="ga.codigo">{{ ga.descricao }}</option>
+      </select>
+    </div>
+    <div class="col">
+      <button mat-flat-button (click)="cadastrar()">Cadastrar</button>
+    </div>
+  </div>
 </form>
