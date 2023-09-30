@@ -1,6 +1,62 @@
+@import "../../../styles";
+
 .formulario {
   display: flex;
   align-items: flex-end;
   justify-content: center;
   gap: 70px;
+}
+
+// ESTILO DAS LINHAS
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+// ESTILO DAS COLUNAS
+.mat-column-id {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+  color: $texto-cor;
+}
+
+.mat-column-nome {
+  width: 320px;
+  text-align: center;
+  color: $texto-cor;
+}
+
+.mat-column-grupo {
+  color: $texto-cor;
+}
+
+.mat-column-actions {
+  color: $texto-cor;
+}
+
+// ESTILO DA TABELA
+.tabela-ingredientes {
+  margin: 10px;
+  max-height: 600px;
+  overflow: hidden;
+  overflow-y: scroll;
+
+  table {
+    background-color: $background-color;
+  }
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $borda-cor;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $background-color;
+  }
 }

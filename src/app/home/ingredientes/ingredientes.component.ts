@@ -15,6 +15,10 @@ export class IngredientesComponent implements OnInit {
   ingredientesForm: FormGroup;
   gruposAlimentares: { codigo: number; descricao: string }[];
 
+  ingredientesCadastrados!: Ingrediente[];
+  displayedColumns: string[] = ['id', 'nome', 'grupo', 'actions'];
+
+
   constructor(
     private formBuilder: FormBuilder,
     private ingredienteService: IngredientesService,
@@ -39,7 +43,12 @@ export class IngredientesComponent implements OnInit {
     this.ingredienteService.buscarTodosingredientes()
       .subscribe({
         next: (result: Ingrediente[]): void => {
-          //TODO: colocar a lista para rendereizar na página os ingredientes cadastrados
+          this.ingredientesCadastrados = result;
+          console.log(this.ingredientesCadastrados);
+        },
+        error: (error) => {
+          this.verificarErroSessao(error);
+          console.log(error);
         }
       });
   }
@@ -74,6 +83,7 @@ export class IngredientesComponent implements OnInit {
     if (error.status == 403) {
       console.log(error.message);
       this.authService.logout();
+      this.reloadPage();
     }
   }
 

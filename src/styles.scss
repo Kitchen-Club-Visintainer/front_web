@@ -36,10 +36,13 @@ $front_web-theme: mat.define-light-theme((
 $background-color: #222;
 $loading-text: #11c0eb;
 
+$texto-cor: #fff;
+
 $text-menu-ativo-cor: #fabe52;
 $text-menu-inativo-cor: #ce9822;
 $menu-drop-cor: #e7a10e;
 
+$borda-cor: rgba(255, 255, 255, 0.5);
 $borda: 2px solid rgba(255, 255, 255, 0.5);
 
 body {

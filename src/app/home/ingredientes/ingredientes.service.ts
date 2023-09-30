@@ -10,6 +10,7 @@ import {environment} from "../../environments/environment.prod";
 export class IngredientesService {
 
   private urlBase: string = `${environment.apiUrl}${environment.urlIngredientes}`;
+  private listAll: string = this.urlBase + `${environment.listAll}`;
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -26,6 +27,6 @@ export class IngredientesService {
   }
 
   public buscarTodosingredientes(): Observable<Ingrediente[]> {
-    return this.httpClient.get<Ingrediente[]>(this.urlBase);
+    return this.httpClient.get<Ingrediente[]>(this.listAll);
   }
 }
