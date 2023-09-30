@@ -80,14 +80,12 @@ export class IngredientesComponent implements OnInit {
       });
   }
 
-  openDialog(): void {
+  atualizarIngrediente(): void {
     const dialogRef = this.dialog.open(UpdateDialogComponent, {
-      // data: {name: this.name, animal: this.animal},
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.animal = result;
     });
   }
 
