@@ -4,6 +4,8 @@ import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@a
 import {Ingrediente} from "./ingrediente.model";
 import {IngredientesService} from "./ingredientes.service";
 import {LoginService} from "../../login/login.service";
+import {MatDialog} from "@angular/material/dialog";
+import {UpdateDialogComponent} from "./update-dialog/update-dialog.component";
 
 @Component({
   selector: 'app-ingredientes',
@@ -14,15 +16,14 @@ export class IngredientesComponent implements OnInit {
 
   ingredientesForm: FormGroup;
   gruposAlimentares: { codigo: number; descricao: string }[];
-
   ingredientesCadastrados!: Ingrediente[];
   displayedColumns: string[] = ['id', 'nome', 'grupo', 'actions'];
-
 
   constructor(
     private formBuilder: FormBuilder,
     private ingredienteService: IngredientesService,
-    private authService: LoginService) {
+    private authService: LoginService,
+    public dialog: MatDialog) {
 
     this.gruposAlimentares = Object.values(GrupoAlimentar)
       .filter(v => isNaN(Number(v)))
@@ -77,6 +78,17 @@ export class IngredientesComponent implements OnInit {
           this.cleanForm();
         }
       });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(UpdateDialogComponent, {
+      // data: {name: this.name, animal: this.animal},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
   }
 
   private verificarErroSessao(error: any): void {

@@ -11,6 +11,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from "@angular/material/table";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import {MatDialogModule} from '@angular/material/dialog';
+import { UpdateDialogComponent } from './ingredientes/update-dialog/update-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import {MatButtonModule} from "@angular/material/button";
     MenuComponent,
     CadastroComponent,
     ReceitasComponent,
-    IngredientesComponent
+    IngredientesComponent,
+    UpdateDialogComponent
   ],
   exports: [
     CabecalhoComponent
@@ -35,6 +38,7 @@ import {MatButtonModule} from "@angular/material/button";
     MatInputModule,
     FormsModule,
     MatButtonModule,
+    MatDialogModule
   ]
 })
 export class HomeModule { }
