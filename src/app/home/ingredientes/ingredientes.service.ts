@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Ingrediente} from "./ingrediente.model";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment.prod";
@@ -28,5 +28,15 @@ export class IngredientesService {
 
   public buscarTodosingredientes(): Observable<Ingrediente[]> {
     return this.httpClient.get<Ingrediente[]>(this.listAll);
+  }
+
+  public atualizarIngrediente(ingrediente: Ingrediente, id: number): Observable<Ingrediente> {
+    const url:string = `${this.urlBase}/${id}`;
+
+    return this.httpClient.put<Ingrediente>(
+      url,
+      ingrediente,
+      this.httpOptions
+    )
   }
 }

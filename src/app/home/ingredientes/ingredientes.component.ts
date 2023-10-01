@@ -80,8 +80,11 @@ export class IngredientesComponent implements OnInit {
       });
   }
 
-  atualizarIngrediente(): void {
+  atualizarIngrediente(ingrediente: Ingrediente, id: number): void {
     const dialogRef = this.dialog.open(UpdateDialogComponent, {
+      data: {ingrediente, id},
+      height: '550px',
+      width: '500px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

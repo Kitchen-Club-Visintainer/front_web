@@ -44,7 +44,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Ações </th>
         <td mat-cell *matCellDef="let element">
-          <a (click)="atualizarIngrediente()"> <i class="fi fi-br-refresh" style="margin-right: 3px; cursor: pointer;"></i> </a>
+          <a (click)="atualizarIngrediente(element, ingredientesCadastrados.indexOf(element) + 1)"> <i class="fi fi-br-refresh" style="margin-right: 3px; cursor: pointer;"></i> </a>
           <i class="fi fi-rs-trash" style="margin-left: 3px; cursor: pointer;"></i>
         </td>
       </ng-container>

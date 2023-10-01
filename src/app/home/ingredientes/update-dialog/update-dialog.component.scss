@@ -1,0 +1,28 @@
+@import "../../../../styles";
+
+::ng-deep .mat-mdc-dialog-container {
+  --mdc-dialog-container-color: #000f3bf7; //Cor do fundo
+  --mdc-dialog-subhead-color: #fff;      //Cor do título
+  --mdc-dialog-subhead-size: 28px;
+  --mdc-dialog-subhead-weight: 900;     //Peso da fonte do título
+}
+
+.update {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+
+  #ing-nome{
+    width: 70%;
+  }
+  #ing-valorNut{
+    width: 90%;
+  }
+  #ing-grupoAlimentar{
+    width: 150%;
+  }
+}
+
+.update-full-width {
+  width: 100%;
+}
