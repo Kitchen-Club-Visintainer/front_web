@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {GrupoAlimentar, GrupoAlimentarDesc} from "./GrupoAlimentar";
-import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Ingrediente} from "./ingrediente.model";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Ingrediente} from "./entity/ingrediente.model";
 import {IngredientesService} from "./ingredientes.service";
 import {LoginService} from "../../login/login.service";
 import {MatDialog} from "@angular/material/dialog";
 import {UpdateDialogComponent} from "./update-dialog/update-dialog.component";
+import {IngredienteDto} from "./entity/ingredienteDto.model";
 
 @Component({
   selector: 'app-ingredientes',
@@ -16,7 +17,7 @@ export class IngredientesComponent implements OnInit {
 
   ingredientesForm: FormGroup;
   gruposAlimentares: { codigo: number; descricao: string }[];
-  ingredientesCadastrados!: Ingrediente[];
+  ingredientesCadastrados!: IngredienteDto[];
   displayedColumns: string[] = ['id', 'nome', 'grupo', 'actions'];
 
   constructor(
@@ -43,7 +44,7 @@ export class IngredientesComponent implements OnInit {
   ngOnInit(): void {
     this.ingredienteService.buscarTodosingredientes()
       .subscribe({
-        next: (result: Ingrediente[]): void => {
+        next: (result: IngredienteDto[]): void => {
           this.ingredientesCadastrados = result;
           console.log(this.ingredientesCadastrados);
         },
@@ -76,6 +77,7 @@ export class IngredientesComponent implements OnInit {
         complete: () => {
           console.log(nome + valorNutricional + grupoAlimentar);
           this.cleanForm();
+          this.reloadPage();
         }
       });
   }
@@ -89,7 +91,27 @@ export class IngredientesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.reloadPage();
     });
+  }
+
+  excluir(ingrediente: Ingrediente, id: number): void {
+    window.alert('Excluindo ingrediente ' + ingrediente.nome);
+    this.ingredienteService.excluirIngrediente(id)
+      .subscribe({
+        next: (result: Ingrediente) => {
+          console.log(result)
+        },
+        error: (error) => {
+          this.verificarErroSessao(error);
+          console.log(error);
+        },
+        complete: () => {
+          this.cleanForm();
+        }
+      }
+    );
+    this.reloadPage();
   }
 
   private verificarErroSessao(error: any): void {

@@ -1,25 +1,31 @@
-import {GrupoAlimentar} from "./GrupoAlimentar";
+import {GrupoAlimentar} from "../GrupoAlimentar";
 
-export class Ingrediente {
+export class IngredienteDto {
 
-  // private id: number;
+  private _id: number;
   private _nome: string;
   private _valorNutricional: string;
   private _grupoAlimentar: GrupoAlimentar;
 
-
   constructor(
-    // id: number,
+    id: number,
     nome: string,
     valorNutricional: string,
     grupoAlimentar: GrupoAlimentar
   ) {
-    // this.id = id;
+    this._id = id;
     this._nome = nome;
     this._valorNutricional = valorNutricional;
     this._grupoAlimentar = grupoAlimentar;
   }
 
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
+  }
 
   get nome(): string {
     return this._nome;
