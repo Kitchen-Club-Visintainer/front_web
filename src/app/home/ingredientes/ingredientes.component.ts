@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {GrupoAlimentar, GrupoAlimentarDesc} from "./GrupoAlimentar";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Ingrediente} from "./entity/ingrediente.model";
@@ -7,6 +7,9 @@ import {LoginService} from "../../login/login.service";
 import {MatDialog} from "@angular/material/dialog";
 import {UpdateDialogComponent} from "./update-dialog/update-dialog.component";
 import {IngredienteDto} from "./entity/ingredienteDto.model";
+import {MatSort, MatSortable, Sort} from "@angular/material/sort";
+import {LiveAnnouncer} from "@angular/cdk/a11y";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-ingredientes',
@@ -15,21 +18,22 @@ import {IngredienteDto} from "./entity/ingredienteDto.model";
 })
 export class IngredientesComponent implements OnInit {
 
+  @ViewChild(MatSort) sort!: MatSort;
   ingredientesForm: FormGroup;
   gruposAlimentares: { codigo: number; descricao: string }[];
-  ingredientesCadastrados!: IngredienteDto[];
+  ingredientesCadastrados!: MatTableDataSource<IngredienteDto>;
   displayedColumns: string[] = ['id', 'nome', 'grupo', 'actions'];
 
   constructor(
     private formBuilder: FormBuilder,
     private ingredienteService: IngredientesService,
     private authService: LoginService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private _liveAnnouncer: LiveAnnouncer) {
 
     this.gruposAlimentares = Object.values(GrupoAlimentar)
       .filter(v => isNaN(Number(v)))
       .map((item: string | GrupoAlimentar, indice) => ({
-        // codigo: (value as GrupoAlimentar),
         codigo: item as GrupoAlimentar,
         descricao: GrupoAlimentarDesc[indice != 8 ? indice + 1 : 99]
       }));
@@ -41,12 +45,26 @@ export class IngredientesComponent implements OnInit {
     });
   }
 
+  annouceSortChange(sortState: Sort): void {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
   ngOnInit(): void {
     this.ingredienteService.buscarTodosingredientes()
       .subscribe({
         next: (result: IngredienteDto[]): void => {
-          this.ingredientesCadastrados = result;
+          this.ingredientesCadastrados = new MatTableDataSource<IngredienteDto>(result);
           console.log(this.ingredientesCadastrados);
+
+          // Iniciar o sort assim que a lista é criada
+          this.ingredientesCadastrados.sort = this.sort;
+          // Definir a direção da classificação para "ascendente"
+          this.sort.sort(({ id: 'id', start: 'asc' }) as MatSortable);
+
         },
         error: (error) => {
           this.verificarErroSessao(error);
