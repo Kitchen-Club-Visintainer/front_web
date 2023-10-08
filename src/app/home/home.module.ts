@@ -15,6 +15,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {UpdateDialogComponent} from './ingredientes/update-dialog/update-dialog.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {MatSortModule} from '@angular/material/sort';
     MatDialogModule,
     MatSelectModule,
     MatSortModule,
+    MatPaginatorModule,
   ]
 })
 export class HomeModule { }

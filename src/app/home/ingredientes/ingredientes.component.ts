@@ -10,6 +10,7 @@ import {IngredienteDto} from "./entity/ingredienteDto.model";
 import {MatSort, MatSortable, Sort} from "@angular/material/sort";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
 import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-ingredientes',
@@ -19,6 +20,7 @@ import {MatTableDataSource} from "@angular/material/table";
 export class IngredientesComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   ingredientesForm: FormGroup;
   gruposAlimentares: { codigo: number; descricao: string }[];
   ingredientesCadastrados!: MatTableDataSource<IngredienteDto>;
@@ -62,6 +64,8 @@ export class IngredientesComponent implements OnInit {
 
           // Iniciar o sort assim que a lista é criada
           this.ingredientesCadastrados.sort = this.sort;
+          this.ingredientesCadastrados.paginator = this.paginator;
+
           // Definir a direção da classificação para "ascendente"
           this.sort.sort(({ id: 'id', start: 'asc' }) as MatSortable);
 
