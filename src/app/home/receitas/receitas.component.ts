@@ -16,23 +16,23 @@ export class ReceitasComponent implements OnInit {
     private receitaService: ReceitaService) {
 
     this.form = this.formBuilder.group({
-      albums: this.formBuilder.array([])
+      receitas: this.formBuilder.array([])
     });
 
   }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      albums: this.formBuilder.array([])
+      receitas: this.formBuilder.array([])
     });
 
-    this.receitaService.getAllAsFormArray().subscribe(albums => {
-      this.form.setControl('albums', albums);
+    this.receitaService.getAllAsFormArray().subscribe(receitas => {
+      this.form.setControl('receitas', receitas);
     });
   }
 
-  get albums(): FormArray {
-    return this.form.get('albums') as FormArray;
+  get receitas(): FormArray {
+    return this.form.get('receitas') as FormArray;
   }
 
   updateValue(element: FormGroup, event: any): void {
@@ -46,7 +46,7 @@ export class ReceitasComponent implements OnInit {
 
 
   teste(): void {
-    const values = this.albums.controls.map(control => control.value);
+    const values = this.receitas.controls.map(control => control.value);
     console.log(values[0]);
     console.log(values[1]);
   }
