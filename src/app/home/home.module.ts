@@ -16,6 +16,7 @@ import {UpdateDialogComponent} from './ingredientes/update-dialog/update-dialog.
 import {MatSelectModule} from "@angular/material/select";
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {HomeRoutingModule} from "./home-routing.module";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HomeRoutingModule,
     RouterLink,
     RouterOutlet,
     RouterLinkActive,
