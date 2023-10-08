@@ -5,7 +5,10 @@ import {AuthGuard} from "./shared/guards/auth.guard";
 
 const routes: Routes = [
   // {path: 'login', component: LoginComponent},
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]}
+  // {path: '', component: HomeComponent, canActivate: [AuthGuard]}
+  {path: '',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+    canActivate: [AuthGuard]}
 ];
 
 @NgModule({

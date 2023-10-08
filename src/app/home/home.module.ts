@@ -5,7 +5,6 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {MenuComponent} from './cabecalho/menu/menu.component';
 import {CadastroComponent} from './cadastro/cadastro.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ReceitasComponent} from './receitas/receitas.component';
 import {IngredientesComponent} from './ingredientes/ingredientes.component';
 import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from "@angular/material/table";
@@ -16,13 +15,13 @@ import {UpdateDialogComponent} from './ingredientes/update-dialog/update-dialog.
 import {MatSelectModule} from "@angular/material/select";
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {HomeRoutingModule} from "./home-routing.module";
 
 @NgModule({
   declarations: [
     CabecalhoComponent,
     MenuComponent,
     CadastroComponent,
-    ReceitasComponent,
     IngredientesComponent,
     UpdateDialogComponent
   ],
@@ -33,6 +32,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HomeRoutingModule,
     RouterLink,
     RouterOutlet,
     RouterLinkActive,

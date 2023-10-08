@@ -3,7 +3,6 @@ import {HomeComponent} from "./home.component";
 import {CadastroComponent} from "./cadastro/cadastro.component";
 import {NgModule} from "@angular/core";
 import {AuthGuard} from "../shared/guards/auth.guard";
-import {ReceitasComponent} from "./receitas/receitas.component";
 import {IngredientesComponent} from "./ingredientes/ingredientes.component";
 
 const routes: Routes = [
@@ -11,10 +10,9 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      {path: '', redirectTo: 'home', pathMatch: 'full'},
-      {path: 'home', component: HomeComponent},
+      {path: '', redirectTo: 'ingrediente', pathMatch: 'full'},
+      // {path: 'home', component: HomeComponent},
       {path: 'cadastro', component: CadastroComponent, canActivate: [AuthGuard]},
-      {path: 'receita', component: ReceitasComponent, canActivate: [AuthGuard]},
       {path: 'ingrediente', component: IngredientesComponent, canActivate: [AuthGuard]},
     ]
   }
